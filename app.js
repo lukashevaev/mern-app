@@ -4,7 +4,10 @@ const mongoose = require('mongoose')
 
 const app = express();
 
-app.use('/method', require("./routes/method.routes"))
+app.use(express.json({ extended: true}))
+
+app.use('/api/method', require("./routes/method.routes"))
+
 
 const PORT = config.get('port') || 5000;
 

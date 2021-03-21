@@ -3,7 +3,7 @@ const {check, validationResult} = require('express-validator')
 const Service = require('../models/Service')
 const router = Router()
 
-router.get('/get',
+router.get('/services',
     [
         check('name', 'Incorrect name').isString(),
         check('price', 'Incorrect price').isNumeric()
@@ -31,7 +31,7 @@ router.get('/get',
     }
 })
 
-router.get('/post',
+router.post('/post',
     [
         check('name', 'Incorrect name').isString(),
         check('price', 'Incorrect price').isNumeric()
@@ -39,6 +39,7 @@ router.get('/post',
     async (request, response) => {
     try {
         const errors = validationResult(request)
+        console.log(request.body)
 
         if (!errors.isEmpty()) {
             return response.status(400).json({
